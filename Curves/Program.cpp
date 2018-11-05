@@ -136,11 +136,9 @@ int main()
 
 
 		//Подсчет радиусов во втором контейнере
-		vector<shared_ptr<Shape>>::iterator iter = SecondContainer.begin();
-		while (iter != SecondContainer.end())
+		for (auto n : SecondContainer)
 		{
-			sum += (*iter)->GetParameters()[0];
-			iter++;
+			sum += n->GetParameters()[0];
 		}
 		cout << "Sum of all radii in second container is " << sum << endl;
 
