@@ -1,4 +1,4 @@
-// Curves.cpp: îïðåäåëÿåò òî÷êó âõîäà äëÿ êîíñîëüíîãî ïðèëîæåíèÿ.
+// Curves.cpp: определяет точку входа для консольного приложения.
 //
 #include "stdafx.h"
 #include <vector>
@@ -28,15 +28,15 @@ int main()
 	vector<shared_ptr<Shape>> SecondContainer = {};
 	srand(time(0));	
 	
-	//Íàïîëíåíèå ïåðâîãî êîíòåéíåðà	
+	//Наполнение первого контейнера	
 	for (int i=0;i<5;++i)
 	{
-		//ñëó÷àéíûì îáðàçîì âûáèðàåì òèï êðèâîé
+		//случайным образом выбираем тип кривой
 		randomShape = 1 + rand() % 3;
 		switch (randomShape)
 		{
 		case 1:
-		{ //äåëàåì ïðîâåðêó ïîääåðæêè òèïà êðèâîé êîíòåéíåðîì ïðè çàïîëíåíèè
+		{ //делаем проверку поддержки типа кривой контейнером при заполнении
 			try
 			{
 				FirstContainer.push_back(make_shared<Circle>());
@@ -74,7 +74,7 @@ int main()
 		}
 	}
 	
-	//Âûâîä òî÷åê äëÿ t=PI/4, t ââîäèòñÿ â ðàäèàíàõ, t=0.785 ðàä
+	//Вывод точек для t=PI/4, t вводится в радианах, t=0.785 рад
 	for (auto n : FirstContainer)
 	{
 		t = 0.785;
@@ -93,7 +93,7 @@ int main()
 		cout << "z= " << z << endl;
 	}
 
-	//íàïîëíåíèå âòîðîãî êîíòåéíåðà
+	//наполнение второго контейнера
 	copy_if(FirstContainer.begin(), FirstContainer.end(), back_inserter(SecondContainer), [](auto n)
 	{
 		string st = n->GetType();
@@ -101,8 +101,8 @@ int main()
 	});
 	cout <<"Size of second container: " << SecondContainer.size()<<endl;
 
-	//ïðîâåðèì àäðåñ, íà êîòîðûé óêàçûâàþò â ïàìÿòè óêàçàòåëè â ïåðâîì è âòîðîì êîíòåéíåðå (äîëæíû óêàçûâàòü íà îäèí îáúåêò)
-	//åñëè äâà óêàçàòåëÿ óêàçûâàþò íà îäèí îáúåêò, âûâåäåì åãî òèï è àäðåñ
+	//проверим адрес, на который указывают в памяти указатели в первом и втором контейнере (должны указывать на один объект)
+	//если два указателя указывают на один объект, выведем его тип и адрес
 	for (auto i : SecondContainer)
 	{
 		for (auto n : FirstContainer)
@@ -114,7 +114,7 @@ int main()
 		}
 	}	
 	
-	//Ñîðòèðîâêà âòîðîãî êîíòåéíåðà ïî ðàäèóñó
+	//Сортировка второго контейнера по радиусу
 	struct CompareSh
 	{
 		bool operator()(shared_ptr<Shape> A, shared_ptr<Shape> B)
@@ -135,7 +135,7 @@ int main()
 		cout<< endl;
 
 
-		//Ïîäñ÷åò ðàäèóñîâ âî âòîðîì êîíòåéíåðå
+		//Подсчет радиусов во втором контейнере
 		vector<shared_ptr<Shape>>::iterator iter = SecondContainer.begin();
 		while (iter != SecondContainer.end())
 		{
