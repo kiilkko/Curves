@@ -1,0 +1,4 @@
+﻿  Program.cpp
+c:\users\kiraz\documents\visual studio 2017\projects\curves\program.cpp(29): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Curves.vcxproj -> C:\Users\kiraz\documents\visual studio 2017\Projects\Curves\Debug\Curves.exe
+  Curves.vcxproj -> C:\Users\kiraz\documents\visual studio 2017\Projects\Curves\Debug\Curves.pdb (Partial PDB)
