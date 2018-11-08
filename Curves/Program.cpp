@@ -33,6 +33,7 @@ int main()
 	{
 		//случайным образом выбираем тип кривой
 		randomShape = 1 + rand() % 3;
+		/* ОПТИМИЗИРОВАНО!
 		switch (randomShape)
 		{
 		case 1:
@@ -71,6 +72,16 @@ int main()
 			}
 			break;
 		}
+		ОПТИМИЗИРОВАНО! }*/
+		
+		//делаем проверку поддержки типа кривой контейнером при заполнении
+		try
+		{
+		FirstContainer.push_back(Shape::make_shape(randomShape));
+		}		
+		catch (const std::exception&)
+		{
+			cout << "Invalid type!" << endl;
 		}
 	}
 	
@@ -133,12 +144,7 @@ int main()
 	{
 		sort(SecondContainer.begin(), SecondContainer.end(), CompareSh());
 		cout << "Sort result: circles radius in ascending order: " << endl;
-		for (auto n : SecondContainer)
-		{
-			cout << n->GetParameters()[0] << " ";
-		}
-		cout<< endl;*/
-	
+		*/	
 	//ОПТИМИЗИРОВАНО!	
 	if (SecondContainer.size() > 0)
 	{
