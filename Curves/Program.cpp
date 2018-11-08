@@ -79,8 +79,9 @@ int main()
 	{
 		t = 0.785;
 		n->GetPointValue(t, x, y, z);
-		type = n->GetType();
-		cout << type << ":" << endl;
+		//type = n->GetType();
+		//ОПТИМИЗИРОВАНО!
+		cout << n->GetType() << ":" << endl;
 		cout <<  "Coordinates of point:" << endl;
 		cout << "x= " << x << endl;
 		cout << "y= " << y << endl;
@@ -96,8 +97,10 @@ int main()
 	//наполнение второго контейнера
 	copy_if(FirstContainer.begin(), FirstContainer.end(), back_inserter(SecondContainer), [](auto n)
 	{
-		string st = n->GetType();
-		return st == "Circle";
+		/*string st = n->GetType();
+		return st == "Circle";*/
+		//ОПТИМИЗИРОВАНО!
+		return ((n->GetType()) == "Circle");
 	});
 	cout <<"Size of second container: " << SecondContainer.size()<<endl;
 
