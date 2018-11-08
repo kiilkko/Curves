@@ -115,7 +115,9 @@ int main()
 	}	
 	
 	//Сортировка второго контейнера по радиусу
-	struct CompareSh
+	//ОПТИМИЗИРОВАНО!
+	
+	/*struct CompareSh
 	{
 		bool operator()(shared_ptr<Shape> A, shared_ptr<Shape> B)
 		{
@@ -127,6 +129,17 @@ int main()
 	if (SecondContainer.size() > 0)
 	{
 		sort(SecondContainer.begin(), SecondContainer.end(), CompareSh());
+		cout << "Sort result: circles radius in ascending order: " << endl;
+		for (auto n : SecondContainer)
+		{
+			cout << n->GetParameters()[0] << " ";
+		}
+		cout<< endl;*/
+	
+	//ОПТИМИЗИРОВАНО!	
+	if (SecondContainer.size() > 0)
+	{
+		sort(SecondContainer.begin(), SecondContainer.end(), [SecondContainer](shared_ptr<Shape> A, shared_ptr<Shape> B) {return ((A->GetParameters()[0]) < (B->GetParameters()[0]));});
 		cout << "Sort result: circles radius in ascending order: " << endl;
 		for (auto n : SecondContainer)
 		{
